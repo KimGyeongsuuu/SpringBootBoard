@@ -3,6 +3,8 @@ package com.example.board.service;
 import com.example.board.entity.Board;
 import com.example.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,8 +34,8 @@ public class BoardService {
         boardRepository.save(board);
     }
     // 게시글 리스트 처리
-    public List<Board> boardList(){
-        return boardRepository.findAll();
+    public Page<Board> boardList(Pageable pageable){
+        return boardRepository.findAll(pageable);
     }
 
     public Board boardView(Integer id){
